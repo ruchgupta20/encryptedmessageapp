@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<head>
+  <title>Pusher Test</title>
+  <script src="https://js.pusher.com/5.0/pusher.min.js"></script>
+  <script>
+
+    // Enable pusher logging - don't include this in production
+    Pusher.logToConsole = true;
+
+    var pusher = new Pusher('177264e1ee4b4dc6743e', {
+      cluster: 'ap2',
+      forceTLS: true
+    });
+
+    var channel = pusher.subscribe('my-channel');
+    channel.bind('my-event', function(data) {
+      alert(JSON.stringify(data));
+    });
+  </script>
+  <script type="text/javascript">
+    var Pusher = require('pusher');
+
+var channels_client = new Pusher({
+  appId: '865775',
+  key: '177264e1ee4b4dc6743e',
+  secret: '1b05eea0f388265e7859',
+  cluster: 'ap2',
+  encrypted: true
+});
+
+channels_client.trigger('my-channel', 'my-event', {
+  "message": "hello world"
+});
+  </script>
+</head>
+<body>
+  <h1>Pusher Test</h1>
+  <p>
+    Try publishing an messaging app <code></code>
+    with event name <code>my-event</code>.
+  </p>
+</body>
